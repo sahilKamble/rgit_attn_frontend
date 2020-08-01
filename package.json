@@ -1,0 +1,22 @@
+{
+  "name": "rgit_attn_frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sahilKamble/rgit_attn_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sahilKamble/rgit_attn_frontend/issues"
+  },
+  "homepage": "https://github.com/sahilKamble/rgit_attn_frontend#readme",
+  "dependencies": {
+    "lite-server": "^2.5.4"
+  }
+}

@@ -16,5 +16,6 @@ request1.onload = () => {
         console.log(subjectId);
         var url_subjectStudents = url+"subjects/"+subjectId+"/students";
         console.log(url_subjectStudents); 
+        console.log('test');
     }
 }
