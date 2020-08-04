@@ -19,7 +19,43 @@
 //         console.log('test');
 //     }
 
-// const url  = "https://attn-server.herokuapp.com/attn/table/5f257aecfe8b2700174a61a9";
+const url  = "https://attn-server.herokuapp.com/attn/table/5f206d58ea613a00172d89ff";
+const attnurl = "https://attn-server.herokuapp.com/attn/sub/5f206d58ea613a00172d89ff";
+const studentsurl = "https://attn-server.herokuapp.com/subjects/5f206d58ea613a00172d89ff/students";
+
+fetch(studentsurl)
+.then(response => response.json())
+.then(data => {
+    
+    students = data.students
+                .sort((a,b) => a.roll - b.roll)
+                .sort((a,b) => a.div - b.div);
+    for(student of students) {
+        const roll = student.roll; 
+        const id = student._id
+        fetch(attnurl + "/" + id)
+        .then(response => response.json())
+        .then(data => {
+            document.write(roll+ "  ");
+            for(attn of data) {
+                // console.log(attn)
+                const s = attn.present ? "P" : "A"
+                document.write(s + ' ');
+            }
+            document.write('<br/>');
+        })
+       
+    }
+    document.write('</table>');
+})
+
+// async function req() {
+
+// }
+
+
+
+
 
 // async function req() {       
 //     let req = await fetch(url);
@@ -44,21 +80,3 @@
 //     document.write('<table border=1>' + table + '</table>');
 // }
 // req();
-
-
-let request1 = new XMLHttpRequest();
-request1.open("GET", "https://attn-server.herokuapp.com/subjects");
-request1.send();
-request1.onload = () => {
-
-    if (request1.status === 200) {
-        console.log("loaded")
-        var jsonObj = JSON.parse(request1.responseText);
-        // console.log(jsonObj1);
-        var i = 2;
-        for (subject of jsonObj) {
-            console.log(subject)
-            
-        }
-    }
-}
