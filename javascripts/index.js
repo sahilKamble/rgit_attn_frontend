@@ -1,3 +1,4 @@
+//import TableToExcel from "@linways/table-to-excel";
 const url = "https://attn-server.herokuapp.com/attn/table/5f206d58ea613a00172d89ff";
 const attnurl = "https://attn-server.herokuapp.com/attn/sub/";
 const studentsurl = "https://attn-server.herokuapp.com/subjects/";
@@ -125,6 +126,18 @@ async function show() {
     table.classList.remove('hidden');
     await req(id);
 }
+//button for html to xlsx(trying not sure!)
+
+// let button = document.querySelector("#button-excel");
+
+// button.addEventListener("click", e => {
+//   let table = document.querySelector(".attendence-table");
+//   TableToExcel.convert(table);
+// });
+ function convert(){
+    let table = document.querySelector(".attendance-table");
+    console.log(table);
+    TableToExcel.convert(table);}
 
 // req();
 
