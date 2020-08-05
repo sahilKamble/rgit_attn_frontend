@@ -1,3 +1,6 @@
+document.querySelector('head').innerHTML += '<link rel="stylesheet" href="style2.css" type="text/css"/>';
+
+
 const url = "https://attn-server.herokuapp.com/attn/table/5f206d58ea613a00172d89ff";
 const attnurl = "https://attn-server.herokuapp.com/attn/sub/";
 const studentsurl = "https://attn-server.herokuapp.com/subjects/";
@@ -144,6 +147,22 @@ async function show() {
     table.classList.remove('hidden');
     await req(id);
 }
+
+
+$(document).ready(function () {
+    $('tbody').scroll(function (e) { //detect a scroll event on the tbody
+        /*
+    Setting the thead left value to the negative valule of tbody.scrollLeft will make it track the movement
+    of the tbody element. Setting an elements left value to that of the tbody.scrollLeft left makes it maintain 			it's relative position at the left of the table.    
+    */
+        $('thead').css("left", -$("tbody").scrollLeft()); //fix the thead relative to the body scrolling
+        $('thead th:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first cell of the header
+        $('tbody td:nth-child(1)').css("left", $("tbody").scrollLeft()); //fix the first column of tdbody
+        $('thead th:nth-child(2)').css("left", $("tbody").scrollLeft());
+        $('tbody td:nth-child(2)').css("left", $("tbody").scrollLeft());
+    });
+});
+
 
 // req();
 
