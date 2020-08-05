@@ -43,16 +43,18 @@ function toTitleCase(str) {
 }
 
 async function req(sid) {
+    const url2 = "https://attn-server.herokuapp.com/attn/table/" + sid;
+
     document.querySelector(".show-attendance").disabled = true;
     tableHeader = document.querySelector(".table-header");
     table = document.querySelector(".table-body");
     // console.log(studentsurl + sid + "/students");
-    let resp = await fetch(studentsurl + sid + "/students");
-    let data = await resp.json();
-    // console.log(data);
-    let students = data.students
-        .sort((a, b) => a.roll - b.roll)
-        .sort((a, b) => a.div - b.div);
+    // let resp = await fetch(studentsurl + sid + "/students");
+    // let data = await resp.json();
+    // // console.log(data);
+    // let students = data.students
+    //     .sort((a, b) => a.roll - b.roll)
+    //     .sort((a, b) => a.div - b.div);
 
 
     let tableName = document.createElement("th");
@@ -65,31 +67,30 @@ async function req(sid) {
     tableRoll.innerHTML = "Roll No.";
     tableHeader.appendChild(tableRoll);
 
-    let res = await fetch(attnurl + sid + "/" + students[0]._id);
-    let attns = await res.json();
-    for (attn of attns) {
+    let res = await fetch(url2);
+    let data = await res.json();
+    for (attn of data[0].attn) {
         let tableRoll = document.createElement("th");
         tableRoll.className = "col";
         let d = new Date(attn.date);
         // console.log(d);
         tableRoll.innerHTML = d.toLocaleString();
         tableHeader.appendChild(tableRoll);
-
     }
-    let lect = attns.length;
+    let lect = data[0].attn.length;
     let tableTotal = document.createElement("th");
     tableTotal.className = "col";
     tableTotal.innerHTML = "TotaL/" + lect;
     tableHeader.appendChild(tableTotal);
 
-    for (student of students) {
+    for (student_info of data) {
         if (!stop) {
-            const roll = student.roll;
-            const name = student.name;
-            const id = student._id;
-            let res = await fetch(attnurl + sid + "/" + id);
-            let attns = await res.json();
-            // console.log(attns)
+            const roll = student_info.student.roll;
+            const name = student_info.student.name;
+            // const id = student._id;
+            // let res = await fetch(attnurl + sid + "/" + id);
+            // let attns = await res.json();
+            // // console.log(attns)
             let entry = document.createElement("tr");
             entry.className = "table-row";
             let tableName = document.createElement("td");
@@ -102,7 +103,7 @@ async function req(sid) {
             entry.appendChild(tableRoll);
             // document.write(roll+ "  " + name + "  ");
             var count = 0;
-            for (attn of attns) {
+            for (attn of student_info.attn) {
 
                 // console.log(attn.date)
                 const s = attn.present ? "P" : "A";
