@@ -138,6 +138,18 @@ function show() {
         req(id);
     }
 }
+//button for html to xlsx(trying not sure!)
+
+// let button = document.querySelector("#button-excel");
+
+// button.addEventListener("click", e => {
+//   let table = document.querySelector(".attendence-table");
+//   TableToExcel.convert(table);
+// });
+ function convert(){
+    let table = document.querySelector(".attendance-table");
+    console.log(table);
+    TableToExcel.convert(table);}
 
 $(document).ready(function () {
     $('tbody').scroll(function (e) { //detect a scroll event on the tbody
