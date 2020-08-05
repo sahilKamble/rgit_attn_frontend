@@ -1,7 +1,7 @@
 const url = "https://attn-server.herokuapp.com/attn/table/5f206d58ea613a00172d89ff";
 const attnurl = "https://attn-server.herokuapp.com/attn/sub/";
 const studentsurl = "https://attn-server.herokuapp.com/subjects/";
-
+var stop = false
 var subjects = {};
 let request1 = new XMLHttpRequest();
 request1.open("GET", "https://attn-server.herokuapp.com/subjects");
@@ -26,6 +26,11 @@ request1.onload = () => {
     }
 }
 
+function cancel() {
+    stop = true;
+    document.querySelector(".show-attendance").disabled = false;
+}
+
 function toTitleCase(str) {
     return str.replace(
         /\w\S*/g,
@@ -36,6 +41,7 @@ function toTitleCase(str) {
 }
 
 async function req(sid) {
+    document.querySelector(".show-attendance").disabled = true;
     tableHeader = document.querySelector(".table-header")
     table = document.querySelector(".table-body");
     // console.log(studentsurl + sid + "/students");
@@ -55,6 +61,7 @@ async function req(sid) {
         // console.log(d);
         tableRoll.innerHTML = d.toLocaleString();
         tableHeader.appendChild(tableRoll);
+        
     }
     var lect = attns.length;
     var tableTotal = document.createElement("th");
@@ -63,6 +70,7 @@ async function req(sid) {
     tableHeader.appendChild(tableTotal);
 
     for (student of students) {
+        if(!stop){
         const roll = student.roll;
         const name = student.name;
         const id = student._id;
@@ -82,6 +90,7 @@ async function req(sid) {
         // document.write(roll+ "  " + name + "  ");
         var count = 0;
         for (attn of attns) {
+
             // console.log(attn.date)
             const s = attn.present ? "P" : "A";
             if (attn.present) {
@@ -92,6 +101,7 @@ async function req(sid) {
             tableAttn.innerHTML = s;
             entry.appendChild(tableAttn);
             // document.write(s + ' ');
+            
         }
         var tableAttn = document.createElement("td");
         tableAttn.className = "col";
@@ -100,6 +110,7 @@ async function req(sid) {
 
         table.appendChild(entry);
         // document.write('<br/>');
+    }
     }
 }
 
