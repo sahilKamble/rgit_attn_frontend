@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sahilKamble/rgit_attn_frontend#readme",
   "dependencies": {
+    "html-to-xlsx": "^2.0.0",
     "lite-server": "^2.5.4",
     "node-sass": "^4.14.1"
   }
