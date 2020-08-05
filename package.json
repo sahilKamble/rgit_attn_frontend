@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "lite-server"
+    "start": "node-sass stylesheets/styles.scss stylesheets/styles.css -w"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sahilKamble/rgit_attn_frontend#readme",
   "dependencies": {
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.5.4",
+    "node-sass": "^4.14.1"
   }
 }
