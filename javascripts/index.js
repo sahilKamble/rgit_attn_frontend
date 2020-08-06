@@ -1,6 +1,3 @@
-document.querySelector('head').innerHTML += '<link rel="stylesheet" href="style2.css" type="text/css"/>';
-
-
 const url = "https://attn-server.herokuapp.com/attn/table/5f206d58ea613a00172d89ff";
 const attnurl = "https://attn-server.herokuapp.com/attn/sub/";
 const studentsurl = "https://attn-server.herokuapp.com/subjects/";
@@ -74,7 +71,7 @@ async function req(sid) {
     let data = await res.json();
     for (attn of data[0].attn) {
         let tableRoll = document.createElement("th");
-        tableRoll.className = "col";
+        tableRoll.className = "col attn";
         let d = new Date(attn.date);
         // console.log(d);
         tableRoll.innerHTML = d.toLocaleString();
@@ -82,7 +79,7 @@ async function req(sid) {
     }
     let lect = data[0].attn.length;
     let tableTotal = document.createElement("th");
-    tableTotal.className = "col";
+    tableTotal.className = "col attn";
     tableTotal.innerHTML = "TotaL/" + lect;
     tableHeader.appendChild(tableTotal);
 
