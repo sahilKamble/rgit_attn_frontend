@@ -3,8 +3,8 @@
 // const studentsurl = "https://attn-server.herokuapp.com/subjects/";
 
 var subjects = {};
-tableHeader = document.querySelector(".table-header");
-table = document.querySelector(".table-body");
+var tableHeader = document.querySelector(".table-header");
+var tableBody = document.querySelector(".table-body");
 let request1 = new XMLHttpRequest();
 request1.open("GET", "https://attn-server.herokuapp.com/subjects");
 request1.send();
@@ -41,8 +41,7 @@ async function req(sid) {
     const url2 = "https://attn-server.herokuapp.com/attn/table/" + sid;
 
     document.querySelector(".show-attendance").disabled = true;
-    tableHeader = document.querySelector(".table-header");
-    table = document.querySelector(".table-body");
+    console.log(tableHeader);
     // console.log(studentsurl + sid + "/students");
     // let resp = await fetch(studentsurl + sid + "/students");
     // let data = await resp.json();
@@ -115,21 +114,26 @@ async function req(sid) {
         tableAttn.className = "col";
         tableAttn.innerHTML = count;
         entry.appendChild(tableAttn);
-        table.appendChild(entry);
+        tableBody.appendChild(entry);
         // document.write('<br/>');
     }
     document.querySelector(".show-attendance").disabled = false;
 }
 
-async function show() {
+function show() {
     tableHeader.innerHTML = '';
-    table.innerHTML = '';
+    tableBody.innerHTML = '';
     var sub = document.querySelector('#subjects');
     var subject = sub.options[sub.selectedIndex].text;
     var id = subjects[subject];
     table = document.querySelector('.attendance-table');
-    table.classList.remove('hidden');
-    await req(id);
+    console.log(sub.selectedIndex);
+    if(sub.selectedIndex == 0){
+        table.classList.add('hidden');
+    } else {
+        table.classList.remove('hidden');
+        req(id);
+    }
 }
 
 $(document).ready(function () {

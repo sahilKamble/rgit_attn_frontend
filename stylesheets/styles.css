@@ -2,10 +2,11 @@ body {
   font-family: "lato", sans-serif;
   position: relative; }
 
+.table-div {
+  width: 95vw;
+  margin: auto; }
+
 .attendance-table {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   margin-bottom: 1rem;
   border-collapse: collapse;
   border-spacing: 0;
