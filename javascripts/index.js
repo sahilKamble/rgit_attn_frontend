@@ -68,16 +68,16 @@ async function req(sid) {
         tableRoll.className = "col attn";
         let d = new Date(attn.date);
         // console.log(d);
-        tableRoll.innerHTML = d.toLocaleString('en-US',{
+        tableRoll.innerHTML = d.toLocaleString('en-US', {
             timeStyle: "short",
             dateStyle: "short"
-          });
+        });
         tableHeader.appendChild(tableRoll);
     }
     let lect = data[0].attn.length;
     let tableTotal = document.createElement("th");
     tableTotal.className = "col attn";
-    tableTotal.innerHTML = "TotaL/" + lect;
+    tableTotal.innerHTML = "Total/" + lect;
     tableHeader.appendChild(tableTotal);
 
     for (student_info of data) {
@@ -131,25 +131,24 @@ function show() {
     var id = subjects[subject];
     table = document.querySelector('.attendance-table');
     // console.log(sub.selectedIndex);
-    if(sub.selectedIndex == 0){
+    if (sub.selectedIndex == 0) {
         table.classList.add('hidden');
+        document.querySelector('.button-excel').disabled = true;
+
     } else {
         table.classList.remove('hidden');
         req(id);
+        document.querySelector('.button-excel').disabled = false;
     }
 }
-//button for html to xlsx(trying not sure!)
 
-// let button = document.querySelector("#button-excel");
-
-// button.addEventListener("click", e => {
-//   let table = document.querySelector(".attendence-table");
-//   TableToExcel.convert(table);
-// });
- function convert(){
+function convert() {
     let table = document.querySelector(".attendance-table");
     console.log(table);
-    TableToExcel.convert(table);}
+    TableToExcel.convert(table, {
+        name: "Attendance.xlsx"
+    });
+}
 
 $(document).ready(function () {
     $('tbody').scroll(function (e) { //detect a scroll event on the tbody

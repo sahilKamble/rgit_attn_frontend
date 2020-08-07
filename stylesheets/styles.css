@@ -112,13 +112,14 @@ tbody tr td:nth-child(2) {
   margin-right: 1rem;
   margin-bottom: 1rem; }
 
-.show-attendance {
+.btn {
   padding: 10px 1rem;
   border-radius: 5px;
   background-color: #b8daff;
   border: 1px solid #96b4d4; }
-div {
-  position: fixed;
-  right:    10px;
-  bottom:   10px;
-} 
+
+.button-excel {
+  float: right; }
+  @media (max-width: 500px) {
+    .button-excel {
+      float: none; } }
