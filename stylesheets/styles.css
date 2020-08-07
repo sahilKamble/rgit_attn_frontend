@@ -117,3 +117,8 @@ tbody tr td:nth-child(2) {
   border-radius: 5px;
   background-color: #b8daff;
   border: 1px solid #96b4d4; }
+div {
+  position: fixed;
+  right:    10px;
+  bottom:   10px;
+} 
