@@ -68,7 +68,10 @@ async function req(sid) {
         tableRoll.className = "col attn";
         let d = new Date(attn.date);
         // console.log(d);
-        tableRoll.innerHTML = d.toLocaleString();
+        tableRoll.innerHTML = d.toLocaleString('en-US',{
+            timeStyle: "short",
+            dateStyle: "short"
+          });
         tableHeader.appendChild(tableRoll);
     }
     let lect = data[0].attn.length;
@@ -127,7 +130,7 @@ function show() {
     var subject = sub.options[sub.selectedIndex].text;
     var id = subjects[subject];
     table = document.querySelector('.attendance-table');
-    console.log(sub.selectedIndex);
+    // console.log(sub.selectedIndex);
     if(sub.selectedIndex == 0){
         table.classList.add('hidden');
     } else {
